@@ -6,7 +6,7 @@ workdir: /tmp
 
 dataset:
   controller:
-    image: registry.cn-shanghai.aliyuncs.com/jindofs/dataset-controller:v0.8.0-219b058
+    image: fluidcloudnative/dataset-controller:v0.8.0-7f8aa6a
 
 csi:
   featureGates: "FuseRecovery=false"
@@ -15,7 +15,7 @@ csi:
   registrar:
     image: registry.aliyuncs.com/acs/csi-node-driver-registrar:v1.2.0
   plugins:
-    image: fluidcloudnative/fluid-csi:v0.8.0-317d4ad
+    image: fluidcloudnative/fluid-csi:v0.8.0-7f8aa6a
   kubelet:
     rootDir: /var/lib/kubelet
 
@@ -26,11 +26,11 @@ runtime:
   alluxio:
     runtimeWorkers: 3
     portRange: 20000-26000
-    enabled: false
+    enabled: true
     init:
-      image: fluidcloudnative/init-users:v0.8.0-317d4ad
+      image: fluidcloudnative/init-users:v0.8.0-7f8aa6a
     controller:
-      image: fluidcloudnative/alluxioruntime-controller:v0.8.0-317d4ad
+      image: fluidcloudnative/alluxioruntime-controller:v0.8.0-7f8aa6a
     runtime:
       # image: fluidcloudnative/alluxio:release-2.7.3-SNAPSHOT-a7154f1
       image: fluidcloudnative/alluxio:release-2.8.1-SNAPSHOT-0433ade
@@ -40,26 +40,26 @@ runtime:
   jindo:
     runtimeWorkers: 3
     portRange: 18000-19999
-    enabled: true
+    enabled: false
     engine: jindofsx
     smartdata:
-      image: registry.cn-shanghai.aliyuncs.com/jindofs/smartdata:4.4.0
+      image: registry.cn-shanghai.aliyuncs.com/jindofs/smartdata:4.3.2
     fuse:
-      image: registry.cn-shanghai.aliyuncs.com/jindofs/jindo-fuse:4.4.0
+      image: registry.cn-shanghai.aliyuncs.com/jindofs/jindo-fuse:4.3.2
     controller:
-      image: registry.cn-shanghai.aliyuncs.com/jindofs/jindoruntime-controller:v0.8.0-219b058
+      image: fluidcloudnative/jindoruntime-controller:v0.8.0-7f8aa6a
     init:
       portCheck:
         enabled: false
-      image: fluidcloudnative/init-users:v0.8.0-317d4ad
+      image: fluidcloudnative/init-users:v0.8.0-7f8aa6a
   goosefs:
     runtimeWorkers: 3
     portRange: 26000-32000
     enabled: false
     init:
-      image: fluidcloudnative/init-users:v0.8.0-317d4ad
+      image: fluidcloudnative/init-users:v0.8.0-7f8aa6a
     controller:
-      image: fluidcloudnative/goosefsruntime-controller:v0.8.0-317d4ad
+      image: fluidcloudnative/goosefsruntime-controller:v0.8.0-7f8aa6a
     runtime:
       image: ccr.ccs.tencentyun.com/qcloud/goosefs:v1.2.0
     fuse:
@@ -67,16 +67,16 @@ runtime:
   juicefs:
     enabled: false
     controller:
-      image: fluidcloudnative/juicefsruntime-controller:v0.8.0-317d4ad
+      image: fluidcloudnative/juicefsruntime-controller:v0.8.0-7f8aa6a
     fuse:
       image: registry.cn-hangzhou.aliyuncs.com/juicefs/juicefs-fuse:v1.0.0-beta2
 
 webhook:
   enabled: true
-  image: fluidcloudnative/fluid-webhook:v0.8.0-317d4ad
+  image: fluidcloudnative/fluid-webhook:v0.8.0-7f8aa6a
   replicas: 1
 
 fluidapp:
   enabled: true
   controller:
-    image: fluidcloudnative/application-controller:v0.8.0-317d4ad
+    image: fluidcloudnative/application-controller:v0.8.0-7f8aa6a
