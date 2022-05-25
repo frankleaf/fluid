@@ -6,7 +6,7 @@ workdir: /tmp
 
 dataset:
   controller:
-    image: fluidcloudnative/dataset-controller:v0.8.0-317d4ad
+    image: registry.cn-shanghai.aliyuncs.com/jindofs/dataset-controller:v0.8.0-219b058
 
 csi:
   featureGates: "FuseRecovery=false"
@@ -26,7 +26,7 @@ runtime:
   alluxio:
     runtimeWorkers: 3
     portRange: 20000-26000
-    enabled: true
+    enabled: false
     init:
       image: fluidcloudnative/init-users:v0.8.0-317d4ad
     controller:
@@ -40,14 +40,14 @@ runtime:
   jindo:
     runtimeWorkers: 3
     portRange: 18000-19999
-    enabled: false
+    enabled: true
     engine: jindofsx
     smartdata:
-      image: registry.cn-shanghai.aliyuncs.com/jindofs/smartdata:4.3.2
+      image: registry.cn-shanghai.aliyuncs.com/jindofs/smartdata:4.4.0
     fuse:
-      image: registry.cn-shanghai.aliyuncs.com/jindofs/jindo-fuse:4.3.2
+      image: registry.cn-shanghai.aliyuncs.com/jindofs/jindo-fuse:4.4.0
     controller:
-      image: fluidcloudnative/jindoruntime-controller:v0.8.0-317d4ad
+      image: registry.cn-shanghai.aliyuncs.com/jindofs/jindoruntime-controller:v0.8.0-219b058
     init:
       portCheck:
         enabled: false
